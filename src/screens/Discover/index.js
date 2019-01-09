@@ -1,11 +1,37 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Animated } from "react-native";
+import ParallaxList from "../../components/ParallaxList";
+
+import colors from "../../config/colors";
+import fontSize from "../../config/fontSize";
 
 class Discover extends Component {
+  renderItem = () => {
+    return (
+      <View
+        style={{
+          backgroundColor: "red",
+          justifyContent: "center",
+          alignItems: "center",
+          height: 500
+        }}
+      >
+        <Text>Hello World</Text>
+      </View>
+    );
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Discover! </Text>
+        <ParallaxList
+          title={"Discover"}
+          hasLeft={false}
+          hasRight={true}
+          hasFavoraite={false}
+          scrollElement={<Animated.ScrollView />}
+          renderScrollItem={this.renderItem}
+        />
       </View>
     );
   }
@@ -13,10 +39,7 @@ class Discover extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    flex: 1
   }
 });
 

@@ -73,7 +73,7 @@ const TabNavigator = createBottomTabNavigator(
             : require("../../assets/icons/search_ic.png");
         } else if (routeName === "Equipment") {
           icon = focused
-            ? require("../../assets/icons/plus_ic.png")
+            ? require("../../assets/icons/plus_ic_active.png")
             : require("../../assets/icons/plus_ic.png");
         } else if (routeName === "Settings") {
           icon = focused
