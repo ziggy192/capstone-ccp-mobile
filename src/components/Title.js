@@ -1,0 +1,42 @@
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
+
+import colors from "../config/colors";
+import fontSize from "../config/fontSize";
+
+class Title extends Component {
+  render() {
+    const { title, hasMore } = this.props;
+    return (
+      <View style={styles.container}>
+        <Text style={[styles.text, this.props.style]}>
+          {title.toUpperCase()}
+        </Text>
+        <Text style={styles.hasMoreText}>
+          {hasMore ? hasMore || "More" : null}
+        </Text>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  text: {
+    color: colors.secondaryColor,
+    fontSize: fontSize.h4,
+    fontWeight: "500",
+    paddingLeft: 15
+  },
+  hasMoreText: {
+    color: colors.primaryColor,
+    fontSize: fontSize.caption
+  }
+});
+
+export default Title;

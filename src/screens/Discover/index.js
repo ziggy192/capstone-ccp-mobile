@@ -1,29 +1,52 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Animated } from "react-native";
-import ParallaxList from "../../components/ParallaxList";
+import { SafeAreaView } from "react-navigation";
 
+import Title from "../../components/Title";
+import ParallaxList from "../../components/ParallaxList";
+import CustomFlatList from "../../components/CustomFlatList";
+import Item from "./components/Item";
+import TopRateItem from "./components/TopRateItem";
+
+import { discoverData } from "../../config/mockData";
 import colors from "../../config/colors";
 import fontSize from "../../config/fontSize";
 
 class Discover extends Component {
+  renderDiscoverItem = ({ item }) => {
+    return <Item name={item.name} uploaded={item.uploaded} />;
+  };
+
+  renderTopRate = ({ item }) => {
+    return <TopRateItem uploaded={item.uploaded} price={item.price} />;
+  };
+
   renderItem = () => {
     return (
-      <View
-        style={{
-          backgroundColor: "red",
-          justifyContent: "center",
-          alignItems: "center",
-          height: 500
-        }}
-      >
-        <Text>Hello World</Text>
+      <View>
+        <Title title={"What can we help you to find"} />
+        <CustomFlatList
+          data={discoverData}
+          renderItem={this.renderDiscoverItem}
+          isHorizontal={true}
+        />
+        <Title title={"Top-Rate"} />
+        <CustomFlatList
+          data={discoverData}
+          renderItem={this.renderTopRate}
+          numColumns={2}
+          contentContainerStyle={{
+            marginHorizontal: 15,
+            justifyContent: "space-between"
+          }}
+        />
       </View>
     );
   };
 
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ParallaxList
           title={"Discover"}
           hasLeft={false}
@@ -32,7 +55,7 @@ class Discover extends Component {
           scrollElement={<Animated.ScrollView />}
           renderScrollItem={this.renderItem}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -40,6 +63,14 @@ class Discover extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  topRateContainer: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "space-around",
+    paddingHorizontal: 15
   }
 });
 

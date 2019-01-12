@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-class Equipment extends Component {
+class Requester extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text onPress={() => this.props.navigation.navigate("Request")}>
-          I wan to selllllllll!{" "}
+        <Text onPress={() => this.props.navigation.navigate("RequesterPost")}>
+          I don't want to sale
         </Text>
       </View>
     );
@@ -22,4 +27,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Equipment;
+export default Requester;

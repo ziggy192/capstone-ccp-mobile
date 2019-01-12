@@ -13,6 +13,8 @@ import Settings from "../screens/Settings";
 import Search from "../screens/Search";
 import Profile from "../screens/Profile";
 import Equipment from "../screens/Equipment";
+import Requester from "../screens/Equipment/Requester";
+import RequesterPost from "../screens/Equipment/RequesterPost";
 
 const DiscoverStack = createStackNavigator(
   {
@@ -43,12 +45,19 @@ const SearchStack = createStackNavigator(
 
 const EquipmentStack = createStackNavigator(
   {
-    Equipment: Equipment
+    Equipment: Equipment,
+    Request: Requester
   },
   {
-    headerMode: "none"
+    mode: "modal",
+    headerMode: "none",
+    initialRouteName: "Equipment"
   }
 );
+
+const RequesterStack = createStackNavigator({
+  Requester: Requester
+});
 
 const TabNavigator = createBottomTabNavigator(
   {
