@@ -5,7 +5,7 @@ class Equipment extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text onPress={() => this.props.navigation.navigate("Request")}>
+        <Text onPress={() => this.props.navigation.navigate("Requests")}>
           I wan to selllllllll!{" "}
         </Text>
       </View>

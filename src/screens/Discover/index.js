@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Animated } from "react-native";
 import { SafeAreaView } from "react-navigation";
 
+import Button from "../../components/Button";
 import Title from "../../components/Title";
 import ParallaxList from "../../components/ParallaxList";
 import CustomFlatList from "../../components/CustomFlatList";
@@ -14,7 +15,15 @@ import fontSize from "../../config/fontSize";
 
 class Discover extends Component {
   renderDiscoverItem = ({ item }) => {
-    return <Item name={item.name} uploaded={item.uploaded} />;
+    return (
+      <Item
+        name={item.name}
+        uploaded={item.uploaded}
+        onPress={() =>
+          this.props.navigation.navigate("Detail", { id: item.id })
+        }
+      />
+    );
   };
 
   renderTopRate = ({ item }) => {
@@ -29,8 +38,11 @@ class Discover extends Component {
           data={discoverData}
           renderItem={this.renderDiscoverItem}
           isHorizontal={true}
+          contentContainerStyle={{
+            marginTop: 10
+          }}
         />
-        <Title title={"Top-Rate"} />
+        <Title title={"Near you"} />
         <CustomFlatList
           data={discoverData}
           renderItem={this.renderTopRate}
@@ -40,6 +52,7 @@ class Discover extends Component {
             justifyContent: "space-between"
           }}
         />
+        <Button text={"Show more"} />
       </View>
     );
   };

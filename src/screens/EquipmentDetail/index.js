@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-class Requester extends Component {
+class EquipmentDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
+    const { id } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
-        <Text onPress={() => this.props.navigation.navigate("Post")}>
-          I don't want to sale
-        </Text>
+        <Text> {id} </Text>
+        <Text onPress={() => this.props.navigation.goBack()}>Go back!!</Text>
       </View>
     );
   }
@@ -21,10 +21,9 @@ class Requester extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
   }
 });
 
-export default Requester;
+export default EquipmentDetail;

@@ -1,9 +1,19 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Platform
+} from "react-native";
 import { withNavigation } from "react-navigation";
 
 import colors from "../../../config/colors";
 import fontSize from "../../../config/fontSize";
+
+const Touchable =
+  Platform.OS === "ios" ? TouchableOpacity : TouchableNativeFeedback;
 
 class Item extends Component {
   //Upper-case letter
@@ -14,7 +24,7 @@ class Item extends Component {
   render() {
     const { name, uploaded } = this.props;
     return (
-      <TouchableOpacity style={styles.container} onPress={this.props.onPress}>
+      <Touchable style={styles.container} onPress={this.props.onPress}>
         <View>
           <Image
             source={require("../../../../assets/images/construction.png")}
@@ -26,7 +36,7 @@ class Item extends Component {
             <Text style={styles.text}>Publish on{uploaded}</Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </Touchable>
     );
   }
 }

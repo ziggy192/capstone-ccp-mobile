@@ -24,8 +24,7 @@ class ListVerticalItem extends Component {
 const styles = StyleSheet.create({
   itemWrapper: {
     flex: 1,
-    flexDirection: "column",
-    marginTop: 10
+    flexDirection: "column"
   },
   image: {
     width: 185,
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.secondaryColor,
-    fontSize: fontSize.bodyText
+    fontSize: fontSize.secondaryText
   }
 });
 

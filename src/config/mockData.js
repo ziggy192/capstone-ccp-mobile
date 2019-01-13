@@ -40,3 +40,14 @@ export const discoverData = [
     rate: 4.5
   }
 ];
+
+export const itemDetail = {
+  id: 1,
+  name: "Forklift",
+  images: [],
+  price: 100,
+  author: "Hoa Binh Construction",
+  location: "340 abcssss",
+  uploaded: "12-01-2019",
+  rate: 4.5
+};

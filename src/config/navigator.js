@@ -13,12 +13,14 @@ import Settings from "../screens/Settings";
 import Search from "../screens/Search";
 import Profile from "../screens/Profile";
 import Equipment from "../screens/Equipment";
+import EquipmentDetail from "../screens/EquipmentDetail";
 import Requester from "../screens/Equipment/Requester";
 import RequesterPost from "../screens/Equipment/RequesterPost";
 
 const DiscoverStack = createStackNavigator(
   {
-    Discover: Discover
+    Discover: Discover,
+    Detail: EquipmentDetail
   },
   {
     headerMode: "none"
@@ -43,21 +45,26 @@ const SearchStack = createStackNavigator(
   }
 );
 
-const EquipmentStack = createStackNavigator(
+const RequesterStack = createStackNavigator(
   {
-    Equipment: Equipment,
-    Request: Requester
+    Request: Requester,
+    Post: RequesterPost
   },
   {
-    mode: "modal",
-    headerMode: "none",
-    initialRouteName: "Equipment"
+    headerMode: "none"
   }
 );
 
-const RequesterStack = createStackNavigator({
-  Requester: Requester
-});
+const EquipmentStack = createStackNavigator(
+  {
+    Equipment: Equipment,
+    Requests: RequesterStack
+  },
+  {
+    mode: "modal",
+    headerMode: "none"
+  }
+);
 
 const TabNavigator = createBottomTabNavigator(
   {
