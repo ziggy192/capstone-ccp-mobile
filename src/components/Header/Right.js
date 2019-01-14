@@ -17,6 +17,7 @@ class Right extends React.PureComponent {
         }}
       >
         {this.props.hasRight ? <Button.Profile /> : null}
+        {this.props.hasFavorite ? <Button.Favorite /> : null}
       </View>
     );
   }

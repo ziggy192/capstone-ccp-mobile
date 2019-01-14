@@ -25,11 +25,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    marginTop: 5
   },
   text: {
     color: colors.secondaryColor,
-    fontSize: fontSize.h4,
+    fontSize: fontSize.bodyText,
     fontWeight: "500",
     paddingLeft: 15
   },
