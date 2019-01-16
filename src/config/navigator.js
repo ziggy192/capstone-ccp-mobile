@@ -16,6 +16,16 @@ import Equipment from "../screens/Equipment";
 import EquipmentDetail from "../screens/EquipmentDetail";
 import Requester from "../screens/Equipment/Requester";
 import RequesterPost from "../screens/Equipment/RequesterPost";
+import AddEquipment from "../screens/Equipment/AddEquipment";
+
+const EquipmentDetailStack = createStackNavigator(
+  {
+    EquipmentDetail: EquipmentDetail
+  },
+  {
+    headerMode: "none"
+  }
+);
 
 const DiscoverStack = createStackNavigator(
   {
@@ -26,6 +36,20 @@ const DiscoverStack = createStackNavigator(
     headerMode: "none"
   }
 );
+
+DiscoverStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+
+  let routeName = navigation.state.routes[navigation.state.index].routeName;
+
+  if (routeName == "Detail") {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible
+  };
+};
 
 const SettingStack = createStackNavigator(
   {
@@ -48,7 +72,8 @@ const SearchStack = createStackNavigator(
 const RequesterStack = createStackNavigator(
   {
     Request: Requester,
-    Post: RequesterPost
+    Post: RequesterPost,
+    AddEquipment: AddEquipment
   },
   {
     headerMode: "none"

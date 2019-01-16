@@ -32,8 +32,7 @@ class Button extends PureComponent {
 const styles = StyleSheet.create({
   btnWrapper: {
     marginHorizontal: 15,
-    marginTop: 20,
-    flexDirection: "row"
+    marginTop: 20
   },
   button: {
     backgroundColor: colors.primaryColor,
