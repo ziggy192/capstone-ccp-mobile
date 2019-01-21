@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import {
   createBottomTabNavigator,
   createStackNavigator,
@@ -16,6 +16,20 @@ import Equipment from "../screens/Equipment";
 import EquipmentDetail from "../screens/EquipmentDetail";
 import Requester from "../screens/Equipment/Requester";
 import RequesterPost from "../screens/Equipment/RequesterPost";
+import AddEquipment from "../screens/Equipment/AddEquipment";
+import Notification from "../screens/Notification";
+import RequireLogin from "../screens/RequireLogin";
+import Login from "../screens/Login";
+import ButtonWithIcon from "../components/ButtonWithIcon";
+
+const EquipmentDetailStack = createStackNavigator(
+  {
+    EquipmentDetail: EquipmentDetail
+  },
+  {
+    headerMode: "none"
+  }
+);
 
 const DiscoverStack = createStackNavigator(
   {
@@ -26,6 +40,20 @@ const DiscoverStack = createStackNavigator(
     headerMode: "none"
   }
 );
+
+DiscoverStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+
+  let routeName = navigation.state.routes[navigation.state.index].routeName;
+
+  if (routeName == "Detail") {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible
+  };
+};
 
 const SettingStack = createStackNavigator(
   {
@@ -48,7 +76,8 @@ const SearchStack = createStackNavigator(
 const RequesterStack = createStackNavigator(
   {
     Request: Requester,
-    Post: RequesterPost
+    Post: RequesterPost,
+    AddEquipment: AddEquipment
   },
   {
     headerMode: "none"
@@ -66,10 +95,26 @@ const EquipmentStack = createStackNavigator(
   }
 );
 
+const NotificationStack = createStackNavigator(
+  {
+    Notification: Notification
+  },
+  {
+    headerMode: "none"
+  }
+);
+
 const TabNavigator = createBottomTabNavigator(
   {
     Discover: DiscoverStack,
-    Search: SearchStack,
+    Notification: NotificationStack,
+    Call: {
+      screen: () => null, // Empty screen
+      navigationOptions: () => ({
+        title: "",
+        tabBarIcon: <ButtonWithIcon /> // Plus button component
+      })
+    },
     Equipment: EquipmentStack,
     Settings: SettingStack
   },
@@ -83,7 +128,7 @@ const TabNavigator = createBottomTabNavigator(
           icon = focused
             ? require("../../assets/icons/discover_ic_active.png")
             : require("../../assets/icons/discover_ic.png");
-        } else if (routeName === "Search") {
+        } else if (routeName === "Notification") {
           icon = focused
             ? require("../../assets/icons/search_ic_active.png")
             : require("../../assets/icons/search_ic.png");
@@ -100,7 +145,11 @@ const TabNavigator = createBottomTabNavigator(
         return (
           <Image
             source={icon}
-            style={{ width: 26, height: 26, marginTop: 2 }}
+            style={{
+              width: 26,
+              height: 26,
+              marginTop: 2
+            }}
             resizeMode={"contain"}
           />
         );
@@ -121,8 +170,106 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
+// const TabNavigator = createBottomTabNavigator({
+//   Discover: {
+//     screen: DiscoverStack,
+//     navigationOptions: {
+//       title: "Discover",
+//       tabBarIcon: ({ focused }) =>
+//         focused ? (
+//           <Image
+//             source={require("../../assets/icons/discover_ic_active.png")}
+//             style={styles.image}
+//             resizeMode={"contain"}
+//           />
+//         ) : (
+//           <Image
+//             source={require("../../assets/icons/discover_ic.png")}
+//             style={styles.image}
+//             resizeMode={"contain"}
+//           />
+//         )
+//     }
+//   },
+//   Notification: {
+//     screen: NotificationStack,
+//     navigationOptions: {
+//       title: "Notification",
+//       tabBarIcon: ({ focused }) =>
+//         focused ? (
+//           <Image
+//             source={require("../../assets/icons/search_ic_active.png")}
+//             style={styles.image}
+//             resizeMode={"contain"}
+//           />
+//         ) : (
+//           <Image
+//             source={require("../../assets/icons/search_ic.png")}
+//             style={styles.image}
+//             resizeMode={"contain"}
+//           />
+//         )
+//     }
+//   },
+//   Call: {
+//     screen: () => null, // Empty screen
+//     navigationOptions: () => ({
+//       title: "",
+//       tabBarIcon: <ButtonWithIcon /> // Plus button component
+//     })
+//   },
+//   Equipment: {
+//     screen: EquipmentStack,
+//     navigationOptions: {
+//       title: "Equipment",
+//       tabBarIcon: ({ focused }) =>
+//         focused ? (
+//           <Image
+//             source={require("../../assets/icons/plus_ic_active.png")}
+//             style={styles.image}
+//             resizeMode={"contain"}
+//           />
+//         ) : (
+//           <Image
+//             source={require("../../assets/icons/plus_ic.png")}
+//             style={styles.image}
+//             resizeMode={"contain"}
+//           />
+//         )
+//     }
+//   },
+//   Settings: {
+//     screen: SettingStack,
+//     navigationOptions: {
+//       title: "Profile",
+//       tabBarIcon: ({ focused }) =>
+//         focused ? (
+//           <Image
+//             source={require("../../assets/icons/profile_ic_active.png")}
+//             style={styles.image}
+//             resizeMode={"contain"}
+//           />
+//         ) : (
+//           <Image
+//             source={require("../../assets/icons/profile_ic.png")}
+//             style={styles.image}
+//             resizeMode={"contain"}
+//           />
+//         )
+//     }
+//   }
+// });
+
 const AppNavigator = createSwitchNavigator({
   App: TabNavigator
+});
+
+const styles = StyleSheet.create({
+  image: {
+    width: 26,
+    height: 26,
+    marginTop: 2
+  }
 });
 
 export default createAppContainer(AppNavigator);

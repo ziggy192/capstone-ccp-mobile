@@ -6,12 +6,10 @@ import fontSize from "../config/fontSize";
 
 class Title extends Component {
   render() {
-    const { title, hasMore } = this.props;
+    const { title, hasMore, titleStyle } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={[styles.text, this.props.style]}>
-          {title.toUpperCase()}
-        </Text>
+        <Text style={[styles.text, titleStyle]}>{title.toUpperCase()}</Text>
         <Text style={styles.hasMoreText}>
           {hasMore ? hasMore || "More" : null}
         </Text>

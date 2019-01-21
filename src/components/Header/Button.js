@@ -46,18 +46,20 @@ const Favorite = () => (
   </TouchableOpacity>
 );
 
-const Back = ({ onPress, navigation }) => (
-  <TouchableOpacity
-    onPress={() => {
-      navigation.goBack();
-    }}
-  >
-    <Image
-      source={require("../../../assets/icons/back-ic.png")}
-      style={{ width: 22, height: 16 }}
-    />
-  </TouchableOpacity>
-);
+const Back = ({ onPress, navigation }) => {
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        navigation.goBack();
+      }}
+    >
+      <Image
+        source={require("../../../assets/icons/back-ic.png")}
+        style={{ width: 22, height: 16 }}
+      />
+    </TouchableOpacity>
+  );
+};
 
 const Profile = () => (
   <TouchableOpacity>
@@ -68,8 +70,18 @@ const Profile = () => (
   </TouchableOpacity>
 );
 
+const Add = ({ onPress }) => (
+  <TouchableOpacity onPress={onPress}>
+    <Image
+      source={require("../../../assets/icons/plus_ic.png")}
+      style={{ width: 26, height: 26 }}
+    />
+  </TouchableOpacity>
+);
+
 export default {
   Back,
   Favorite,
-  Profile
+  Profile,
+  Add
 };

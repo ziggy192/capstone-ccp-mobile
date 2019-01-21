@@ -46,11 +46,13 @@ class ParallaxList extends Component {
       <Left back={this.props.hasLeft} />
       <AnimatedBody
         title={this.props.title.toUpperCase()}
-        style={{ opacity: this.navOpacity }}
+        style={{ opacity: this.props.opacity || this.navOpacity }}
       />
       <Right
         hasRight={this.props.hasRight}
         hasFavorite={this.props.hasFavorite}
+        hasAdd={this.props.hasAdd}
+        onPress={this.props.onPress}
       />
     </AnimatedHeader>
   );
@@ -74,7 +76,7 @@ class ParallaxList extends Component {
           {
             scale: this.nativeScroll.interpolate({
               inputRange: [-100, 0, 150],
-              outputRange: [2, 1, 1],
+              outputRange: [1.5, 1, 1],
               extrapolate: "clamp"
             })
           }

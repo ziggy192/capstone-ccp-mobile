@@ -1,13 +1,47 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
+import { isSignedIn, onSignIn } from "../../config/auth";
+import RequireLogin from "../RequireLogin";
+import Loading from "../../components/Loading";
 
 class Settings extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      signedIn: false,
+      checkedSignIn: false
+    };
+  }
+
+  componentDidMount() {
+    isSignedIn()
+      .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
+      .catch(err => alert("An error occurred"));
+  }
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Settings! </Text>
-      </View>
-    );
+    const { checkedSignIn, signedIn } = this.state;
+    console.log(signedIn);
+    if (!checkedSignIn) {
+      return <Loading />;
+    }
+    if (signedIn) {
+      return (
+        <View style={styles.container}>
+          <Text>Settings! </Text>
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <Button
+            title="Login"
+            onPress={() => {
+              onSignIn, this.props.navigation.navigate("Discover");
+            }}
+          />
+        </View>
+      );
+    }
   }
 }
 
